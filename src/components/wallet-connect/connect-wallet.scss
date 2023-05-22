@@ -1,0 +1,31 @@
+.connect_wallet_wrp {
+    h1 {
+        color: #fff;
+        text-align: center;
+    }
+    .wallet_list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        .wallet_card {
+            color: #fff;
+            background-color: #2c2c39;
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            border: 1px solid rgba(229, 231, 235, 0.3);
+            cursor: pointer;
+            figure {
+                background-color: #ededf2;
+                border-radius: 50%;
+                width: 72px;
+                height: 72px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 0;
+            }
+        }
+    }
+}
