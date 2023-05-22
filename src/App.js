@@ -1,12 +1,12 @@
+import React from "react";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
-import React from "react";
 import { ConnectWallet } from "./components/wallet-connect";
 import { toast, ToastContainer } from "react-toastify";
 import { useState } from "react";
+import { Transfer } from "./components/transfer";
 import Caver from "caver-js";
 import Web3 from "web3";
-import { Transfer } from "./components/transfer";
 
 const klayProvider = window["klaytn"];
 
@@ -16,7 +16,7 @@ function App() {
   const hexacheck = process.env.hexacheck;
   const web3 = new Web3(Web3.givenProvider || "http://localhost:3000");
   const caver = new Caver("https://api.baobab.klaytn.net:8651/");
-  const ethereum = window.ethereum;
+  const { ethereum } = window;
   const klaytn = window.klaytn;
 
   // useState Hooks
@@ -36,6 +36,7 @@ function App() {
   // Connect To Kaikas
   const connectKaikaskWallet = async () => {
     try {
+      debugger;
       if (klaytn.networkVersion !== kaikasNetwork) {
         klaytn.sendAsync(
           {
@@ -86,9 +87,9 @@ function App() {
           theme: "colored",
         });
       }
-      const checkwalletnetwork = await ethereum.networkVersion;
+      const checkwalletnetwork = await window.ethereum.networkVersion;
       if (nftNetworkId !== checkwalletnetwork) {
-        await ethereum.request({
+        await window.ethereum.request({
           method: "wallet_switchEthereumChain",
           params: [{ chainId: hexacheck }],
         });
