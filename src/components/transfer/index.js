@@ -73,7 +73,6 @@ export const Transfer = (props) => {
             gas: 8000000,
           })
           .once("transactionHash", (transactionHash) => {
-            console.log("txHash", transactionHash);
           })
           .once("receipt", (receipt) => {
             setLoading(false);
@@ -87,7 +86,6 @@ export const Transfer = (props) => {
             toast.error("Transition Rejected", {
               theme: "colored",
             });
-            console.log("error", error);
           });
       } else if (props.connectionType === "Metamask") {
         const TranferAmount = web3.utils.toWei(amount, "ether");

@@ -11,9 +11,8 @@ import Web3 from "web3";
 const klayProvider = window["klaytn"];
 
 function App() {
-  const nftNetworkId = process.env.nftNetworkId;
-  const kaikasNetwork = process.env.kaikasNetwork;
-  const hexacheck = process.env.hexacheck;
+  const nftNetworkId = process.env.REACT_APP_NFT_NETWORK_ID;
+  const kaikasNetwork = process.env.REACT_APP_KLATYN_NETWORK_ID;
   const web3 = new Web3(Web3.givenProvider || "http://localhost:3000");
   const caver = new Caver("https://api.baobab.klaytn.net:8651/");
   const { ethereum } = window;
@@ -36,7 +35,6 @@ function App() {
   // Connect To Kaikas
   const connectKaikaskWallet = async () => {
     try {
-      debugger;
       if (klaytn.networkVersion !== kaikasNetwork) {
         klaytn.sendAsync(
           {
@@ -47,7 +45,6 @@ function App() {
               },
             ],
           },
-          (err, result) => console.log(err, result)
         );
       }
       let Walletaddress = (await klaytn.enable())[0];
@@ -91,15 +88,13 @@ function App() {
       if (nftNetworkId !== checkwalletnetwork) {
         await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: hexacheck }],
+          params: [{ chainId: "0x5" }],
         });
       }
       const accounts = await ethereum.request({
         method: "eth_requestAccounts",
       });
       const balance = await web3.eth.getBalance(accounts[0]);
-      web3.eth.net.getNetworkType().then(console.log);
-
       setAccountAddress(accounts[0]);
       setConnectionType("Metamask");
       setIsConnected(true);
